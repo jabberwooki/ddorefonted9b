@@ -1,0 +1,32 @@
+uuid: 8e8e667f-f37d-4325-a9c7-c6c3e6c214aa
+langcode: fr
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: wwHSOmoP65eQWZZTqjg9385v8Q5izZoYuGuQ5oFnGvU
+id: domainedo_text_settings
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - 'Drupal 7'
+  - Configuration
+migration_group: domainedo
+label: 'Drupal teaser length configuration'
+source:
+  plugin: variable
+  variables:
+    - teaser_length
+  source_module: text
+process:
+  default_summary_length:
+    -
+      plugin: get
+      source: teaser_length
+destination:
+  plugin: config
+  config_name: text.settings
+migration_dependencies:
+  required: {  }
+  optional: {  }

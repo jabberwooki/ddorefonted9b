@@ -1,0 +1,14 @@
+uuid: b96756de-4e91-43a9-b980-a0ec987c870d
+langcode: fr
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: cUsLI8df4p7QUAjr6crDqzqb65xNTy9BEI3aooBg59Q
+id: domainedo
+label: 'Domaine d''O'
+description: 'Migre le site web du domaine d''O vers D9.'
+source_type: 'Drupal 7'
+module: null
+shared_configuration:
+  source:
+    key: drupal_7

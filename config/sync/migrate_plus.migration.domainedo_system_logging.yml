@@ -1,0 +1,38 @@
+uuid: 8e0d814b-f2eb-45bb-8c64-603a4421b1d2
+langcode: fr
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: mZIvacWyqYbjUfWsQ4Jh27reWv94_q2N2T5kwlJkeIc
+id: domainedo_system_logging
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - 'Drupal 7'
+  - Configuration
+migration_group: domainedo
+label: 'System logging'
+source:
+  plugin: variable
+  variables:
+    - error_level
+  source_module: system
+process:
+  error_level:
+    -
+      plugin: static_map
+      source: error_level
+      default_value: all
+      map:
+        - hide
+        - some
+        - all
+        - verbose
+destination:
+  plugin: config
+  config_name: system.logging
+migration_dependencies:
+  required: {  }
+  optional: {  }

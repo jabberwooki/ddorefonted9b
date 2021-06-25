@@ -1,0 +1,55 @@
+uuid: efff077c-e69c-4265-9db4-9e0f46eafe86
+langcode: fr
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: q18R4Z_fe42qmWf_32iVQtk2lHYu68lfWgql-28gjcs
+id: domainedo_d7_pathauto_patterns
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Configuration
+migration_group: domainedo
+label: 'Pathauto patterns'
+source:
+  plugin: pathauto_pattern
+  constants:
+    status: true
+    selection_logic: and
+process:
+  status:
+    -
+      plugin: get
+      source: constants/status
+  id:
+    -
+      plugin: get
+      source: id
+  label:
+    -
+      plugin: get
+      source: label
+  type:
+    -
+      plugin: get
+      source: type
+  pattern:
+    -
+      plugin: get
+      source: pattern
+  selection_criteria:
+    -
+      plugin: get
+      source: selection_criteria
+  selection_logic:
+    -
+      plugin: get
+      source: constants/selection_logic
+destination:
+  plugin: 'entity:pathauto_pattern'
+migration_dependencies:
+  optional:
+    - domainedo_d7_node_type
+  required: {  }

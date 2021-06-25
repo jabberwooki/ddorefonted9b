@@ -1,0 +1,40 @@
+uuid: d08bdfc4-ba94-432c-87f7-42f2cd4706e8
+langcode: fr
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: DEd25gqZG9K0ClhCmpuBuVHxv1nKWHbqvcebxv1AzKM
+id: domainedo_language_prefixes_and_domains
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - 'Drupal 7'
+  - Configuration
+migration_group: domainedo
+label: 'Language prefixes and domains'
+source:
+  plugin: language
+  fetch_all: true
+  domain_negotiation: true
+process:
+  url/prefixes:
+    -
+      plugin: array_build
+      source: languages
+      key: language
+      value: prefix
+  url/domains:
+    -
+      plugin: language_domains
+      source: languages
+      key: language
+      value: domain
+destination:
+  plugin: config
+  config_name: language.negotiation
+migration_dependencies:
+  required:
+    - domainedo_language
+  optional: {  }

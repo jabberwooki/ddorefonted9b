@@ -1,0 +1,37 @@
+uuid: 68b147a4-0b07-4b4e-aef8-b889e8638538
+langcode: fr
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: '-W-W_E0jUZKGGK8ZSqktkQipkXkM7plBVnHAotTaih8'
+id: domainedo_locale_settings
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - 'Drupal 7'
+  - Configuration
+migration_group: domainedo
+label: 'Locale configuration'
+source:
+  plugin: variable
+  variables:
+    - locale_cache_strings
+    - locale_js_directory
+  source_module: locale
+process:
+  cache_strings:
+    -
+      plugin: get
+      source: locale_cache_strings
+  javascript/directory:
+    -
+      plugin: get
+      source: locale_js_directory
+destination:
+  plugin: config
+  config_name: locale.settings
+migration_dependencies:
+  required: {  }
+  optional: {  }

@@ -1,0 +1,31 @@
+uuid: 161b7b7a-07ee-4d1e-961c-856526e33fa0
+langcode: fr
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 7eKLr6Ry8YtH7GSi__aHqY_RD7rkMP8NZbS01ft0zek
+id: domainedo_d7_dblog_settings
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Configuration
+migration_group: domainedo
+label: 'Database logging configuration'
+source:
+  plugin: variable
+  variables:
+    - dblog_row_limit
+  source_module: dblog
+process:
+  row_limit:
+    -
+      plugin: get
+      source: dblog_row_limit
+destination:
+  plugin: config
+  config_name: dblog.settings
+migration_dependencies:
+  required: {  }
+  optional: {  }

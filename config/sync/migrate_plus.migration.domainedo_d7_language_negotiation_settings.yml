@@ -1,0 +1,46 @@
+uuid: cc681343-e029-4fb2-bb98-3a65662d8928
+langcode: fr
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: T03d6-7-dvDNnc_Y8ya7P7u2YW1d3OqI_Qh4crj54Fg
+id: domainedo_d7_language_negotiation_settings
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Configuration
+migration_group: domainedo
+label: 'Language negotiation settings'
+source:
+  plugin: variable
+  variables:
+    - locale_language_negotiation_session_param
+    - locale_language_negotiation_url_part
+  source_module: locale
+process:
+  session/parameter:
+    -
+      plugin: default_value
+      source: locale_language_negotiation_session_param
+      default_value: language
+  selected_langcode:
+    -
+      plugin: default_value
+      default_value: site_default
+  url/source:
+    -
+      plugin: static_map
+      source: locale_language_negotiation_url_part
+      default_value: path_prefix
+      map:
+        - path_prefix
+        - domain
+destination:
+  plugin: config
+  config_name: language.negotiation
+migration_dependencies:
+  required:
+    - domainedo_language
+  optional: {  }

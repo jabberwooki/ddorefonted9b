@@ -1,0 +1,32 @@
+uuid: d1a0cd93-8c8d-4488-a1a9-261468c89f3a
+langcode: fr
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: pNlRYPF2ubUrVS0xiDSh8_OOeggQ0eDZpOchqUGmhmo
+id: domainedo_system_rss
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - 'Drupal 7'
+  - Configuration
+migration_group: domainedo
+label: 'RSS configuration'
+source:
+  plugin: variable
+  variables:
+    - feed_item_length
+  source_module: system
+process:
+  items/view_mode:
+    -
+      plugin: get
+      source: feed_item_length
+destination:
+  plugin: config
+  config_name: system.rss
+migration_dependencies:
+  required: {  }
+  optional: {  }

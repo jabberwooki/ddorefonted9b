@@ -1,0 +1,48 @@
+uuid: d70b6259-2649-4338-847d-b86d42c9dcbd
+langcode: fr
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: xu5xgUYPZwy-WANhF589VOv7tPUVwXgwit6-d457pWo
+id: domainedo_d7_metatag_field_instance_node_show
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Configuration
+migration_group: domainedo
+label: 'Metatag field instance of Spectacle éléments de contenu'
+source:
+  plugin: d7_metatag_field_instance
+  source_module: metatag
+  ignore_map: true
+  constants:
+    field_name: field_metatag
+    label: 'Meta tags'
+  entity_type_id: node
+  entity_type: node
+  bundle: show
+process:
+  bundle:
+    -
+      plugin: get
+      source: bundle
+  entity_type:
+    -
+      plugin: get
+      source: entity_type
+  field_name:
+    -
+      plugin: get
+      source: constants/field_name
+  label:
+    -
+      plugin: get
+      source: constants/label
+destination:
+  plugin: 'entity:field_config'
+migration_dependencies:
+  required:
+    - domainedo_d7_metatag_field_node
+  optional: {  }

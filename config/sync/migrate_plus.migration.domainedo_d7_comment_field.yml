@@ -1,0 +1,48 @@
+uuid: 2765df25-76d7-4bd0-b372-2cf54c2326e1
+langcode: fr
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: EaWwKw1dm2rzk5xWqvIFFDisnc63W0DusaQYqbKj-x8
+id: domainedo_d7_comment_field
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Configuration
+migration_group: domainedo
+label: 'Comment field configuration'
+source:
+  plugin: comment_type
+  constants:
+    entity_type: node
+    type: comment
+process:
+  entity_type:
+    -
+      plugin: get
+      source: constants/entity_type
+  field_name:
+    -
+      plugin: migration_lookup
+      source: type
+      migration: domainedo_d7_comment_type
+    -
+      plugin: skip_on_empty
+      method: row
+  type:
+    -
+      plugin: get
+      source: constants/type
+  settings/comment_type:
+    -
+      plugin: get
+      source: '@field_name'
+destination:
+  plugin: 'entity:field_storage_config'
+migration_dependencies:
+  required:
+    - domainedo_d7_comment_type
+  optional:
+    - domainedo_d7_comment_type
