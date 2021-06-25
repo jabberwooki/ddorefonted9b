@@ -1,0 +1,57 @@
+uuid: f32b5f09-a33c-4406-a167-aa81f8c7cc98
+langcode: fr
+status: true
+dependencies: {  }
+id: domainedo_d7_rdf_mapping
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Configuration
+migration_group: domainedo
+label: 'Drupal 7 RDF Mappings'
+source:
+  plugin: d7_rdf_mapping
+process:
+  id:
+    -
+      plugin: concat
+      source:
+        - type
+        - bundle
+      delimiter: .
+  targetEntityType:
+    -
+      plugin: get
+      source: type
+  bundle:
+    -
+      plugin: get
+      source: bundle
+  types:
+    -
+      plugin: get
+      source: types
+  fieldMappings:
+    -
+      plugin: sub_process
+      source: fieldMappings
+      process:
+        properties: predicates
+        datatype: datatype
+        datatype_callback/callable:
+          plugin: static_map
+          source: callback
+          bypass: true
+          map:
+            date_iso8601: 'Drupal\rdf\CommonDataConverter::dateIso8601Value'
+        mapping_type: type
+destination:
+  plugin: 'entity:rdf_mapping'
+migration_dependencies:
+  optional:
+    - domainedo_d7_comment_type
+    - domainedo_d7_node_type
+    - domainedo_d7_taxonomy_vocabulary
+  required: {  }

@@ -1,0 +1,43 @@
+uuid: 35390742-3c8a-46df-b3a3-e9d50b7b276c
+langcode: fr
+status: true
+dependencies: {  }
+id: domainedo_d7_custom_block
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: domainedo
+label: 'Custom blocks'
+source:
+  plugin: d7_block_custom
+process:
+  id:
+    -
+      plugin: get
+      source: bid
+  info:
+    -
+      plugin: get
+      source: info
+  body/format:
+    -
+      plugin: migration_lookup
+      migration: domainedo_d7_filter_format
+      source: format
+  body/value:
+    -
+      plugin: get
+      source: body
+destination:
+  plugin: 'entity:block_content'
+  default_bundle: basic
+  no_stub: true
+migration_dependencies:
+  required:
+    - domainedo_d7_filter_format
+    - domainedo_block_content_body_field
+  optional:
+    - domainedo_d7_filter_format

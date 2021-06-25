@@ -1,0 +1,53 @@
+uuid: 3ad90a20-7e85-48c9-be48-7485bad3ecce
+langcode: fr
+status: true
+dependencies: {  }
+id: domainedo_d7_comment_entity_form_display
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Configuration
+migration_group: domainedo
+label: 'Comment field form display configuration'
+source:
+  plugin: comment_type
+  constants:
+    entity_type: node
+    form_mode: default
+    options:
+      type: comment_default
+      weight: 20
+process:
+  entity_type:
+    -
+      plugin: get
+      source: constants/entity_type
+  field_name:
+    -
+      plugin: migration_lookup
+      source: type
+      migration: domainedo_d7_comment_type
+    -
+      plugin: skip_on_empty
+      method: row
+  form_mode:
+    -
+      plugin: get
+      source: constants/form_mode
+  options:
+    -
+      plugin: get
+      source: constants/options
+  bundle:
+    -
+      plugin: get
+      source: type
+destination:
+  plugin: component_entity_form_display
+migration_dependencies:
+  required:
+    - domainedo_d7_comment_field_instance
+  optional:
+    - domainedo_d7_comment_type
